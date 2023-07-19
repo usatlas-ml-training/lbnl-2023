@@ -1,7 +1,7 @@
 import os.path as osp
 from glob import glob
-import requests
 
+import requests
 import torch
 from torch_geometric.data import Data, Dataset
 
@@ -152,7 +152,7 @@ class TopTaggingDataset(Dataset):
 
     def get(self, idx):
         data = torch.load(
-            osp.join(self.processed_dir, "data_{}.pt".format(idx)),
+            osp.join(self.processed_dir, f"data_{idx}.pt"),
             map_location="cpu",
         )
         return data
