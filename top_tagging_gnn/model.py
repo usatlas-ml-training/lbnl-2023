@@ -43,7 +43,7 @@ class EdgeConv_lrp(MessagePassing):
 
 class EdgeConvBlock(nn.Module):
     def __init__(self, in_size, layer_size, depth):
-        super(EdgeConvBlock, self).__init__()
+        super().__init__()
 
         layers = []
 
@@ -51,7 +51,7 @@ class EdgeConvBlock(nn.Module):
         layers.append(nn.BatchNorm1d(layer_size))
         layers.append(nn.ReLU())
 
-        for i in range(depth):
+        for _i in range(depth):
             layers.append(nn.Linear(layer_size, layer_size))
             layers.append(nn.BatchNorm1d(layer_size))
             layers.append(nn.ReLU())
@@ -72,7 +72,7 @@ class ParticleNet(nn.Module):
         depth=2,
         dropout=False,
     ):
-        super(ParticleNet, self).__init__()
+        super().__init__()
         self.for_LRP = for_LRP
 
         self.node_feat_size = node_feat_size
