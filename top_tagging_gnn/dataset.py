@@ -15,6 +15,7 @@ class TopTaggingDataset(Dataset):
 
     def __init__(self, root, mode, transform=None, pre_transform=None, pre_filter=None):
         self.mode = mode  # train/val/test
+        self.n_jets_per_file = 100000
         super().__init__(root, transform, pre_transform, pre_filter)
 
     def download(self):
@@ -115,7 +116,7 @@ class TopTaggingDataset(Dataset):
 
         data = []
         c = 0
-        for jet_index in range(len(df - 1)):
+        for jet_index in range(len(df)):
             data.append(
                 Data(
                     x=torch.cat(
@@ -140,7 +141,7 @@ class TopTaggingDataset(Dataset):
                 data[-1]["pz"] = torch.from_numpy(v["part_pz"][jet_index])
                 data[-1]["E"] = torch.from_numpy(v["part_energy"][jet_index])
 
-            if jet_index % 100000 == 0 and jet_index != 0:
+            if jet_index % self.n_jets_per_file == 0 and jet_index != 0:
                 print(f"saving datafile data_{c}")
                 torch.save(data, f"{self.processed_dir}/data_{c}.pt")
                 c += 1
