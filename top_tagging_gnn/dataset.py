@@ -1,3 +1,4 @@
+import os
 import os.path as osp
 from glob import glob
 
@@ -136,14 +137,14 @@ class TopTaggingDataset(Dataset):
             )
 
             if self.mode == "test":  # add (px,py,pz,E) info for lrp fastjet tests
-                data[-1]["px"] = torch.from_numpy(v["part_px"][jet_index])
-                data[-1]["py"] = torch.from_numpy(v["part_py"][jet_index])
-                data[-1]["pz"] = torch.from_numpy(v["part_pz"][jet_index])
-                data[-1]["E"] = torch.from_numpy(v["part_energy"][jet_index])
+                data[-1]["px"] = torch.from_numpy(v["part_px"][jet_index].to_numpy())
+                data[-1]["py"] = torch.from_numpy(v["part_py"][jet_index].to_numpy())
+                data[-1]["pz"] = torch.from_numpy(v["part_pz"][jet_index].to_numpy())
+                data[-1]["E"] = torch.from_numpy(v["part_energy"][jet_index].to_numpy())
 
             if jet_index % self.n_jets_per_file == 0 and jet_index != 0:
                 print(f"saving datafile data_{c}")
-                torch.save(data, f"{self.processed_dir}/data_{c}.pt")
+                torch.save(data, osp.join(self.processed_dir, f"data_{c}.pt"))
                 c += 1
                 data = []
 
@@ -157,9 +158,6 @@ class TopTaggingDataset(Dataset):
             map_location="cpu",
         )
         return data
-
-    def __getitem__(self, idx):
-        return self.get(idx)
 
 
 def parse_args():
@@ -182,4 +180,5 @@ if __name__ == "__main__":
     args = parse_args()
 
     topdataset = TopTaggingDataset(root=f"{args.dataset}/{args.mode}", mode=args.mode)
+    os.makedirs(f"{args.dataset}/{args.mode}/processed", exist_ok=True)
     topdataset.prepare_ptfiles()
