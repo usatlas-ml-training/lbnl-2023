@@ -1,8 +1,9 @@
-## Introduction to JAX
+# Introduction to JAX
+### Arnur, Nithin
 
 ---
 
-## Introduction to JAX
+### What is JAX?
 
 * JAX is a powerful Python library for numerical computing.
 * JAX provides a high-level API for machine learning and scientific computing.
@@ -70,6 +71,41 @@ $$T_4(x) = 8x^4 - 8x^2 + 1$$
 ----
 
 ![image](cheb.png)
+
+---
+
+### Immutability
+
+`jax.numpy` arrays are immutable (like Python strings or tuples).
+
+```python[1-10|5]
+import jax.numpy as jnp
+
+a = jnp.zeros((2, 2))
+
+a[1, 1] = 22
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/narn/code/ml_constraints/jax_gpu_venv/lib/python3.11/site-packages/jax/_src/numpy/array_methods.py", line 270, in _unimplemented_setitem
+    raise TypeError(msg.format(type(self)))
+TypeError: '<class 'jaxlib.xla_extension.ArrayImpl'>' object does not support item assignment. JAX arrays are immutable. Instead of ``x[idx] = y``, use ``x = x.at[idx].set(y)`` or another .at[] method: https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.ndarray.at.html
+```
+
+---
+
+### Immutability
+
+If you really insist (but this is not in-place):
+
+```python
+import jax.numpy as jnp
+
+a = jnp.zeros((2, 2))
+b = a.at[1, :].set(22)
+b
+Array([[ 0.,  0.],
+      [22., 22.]], dtype=float32)
+```
 
 ---
 
@@ -164,7 +200,7 @@ y_compiled = compiled_f(x)
 
 ---
 
-# Detailed Look at Basic Concepts
+## Detailed Look at Basic Concepts
 
 ---
 
@@ -300,7 +336,7 @@ print(ys.shape)
 
 ---
 
-# Differentiation: Details
+## Differentiation: Details
  
 ---
 
