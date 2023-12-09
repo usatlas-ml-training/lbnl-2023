@@ -1,7 +1,20 @@
+# US ATLAS Machine Learning Training 2023
+
+This repository contains the necesary codes and instructions for the training.   
+
 Indico Link: https://indico.cern.ch/event/1264566/timetable/?view=standard
 
 
-This Repository is an OminFold tutorial meant to walk through the steps of using Omnifold for unfolding, originally created for [AI4EIC](https://indico.bnl.gov/event/16586/) conference and later modified for the ATLAS ML Training.
+### Topics and Notebooks:
 
-Many thanks to Miguel Arratia, Owen Long, and Daniel Britzger for letting us use their data from this awesome [paper](https://arxiv.org/pdf/2110.05505.pdf) on reconstructing DIS events using Deep Learning. Thanks to Ben Nachman. The template of this tutorial is taken from his [repo](https://github.com/hep-lbdl/OmniFold) on Omnifold, and is of coursed based on this really cool [paper](https://arxiv.org/abs/1911.09107).
-Huge thanks to Fernando Torales Acosta, for the help and advice!
+| Day    |   Topics  |
+|--------|-----------|
+|  1     |  <li>  [Lecture: Intro to ML (Part 2) notebook](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/intro_lecture2)  <li> [Tutorial: ML Tools and Techniques](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/intro_tutorial_binary_classifier) <li> [Tutorial: Neural Networks](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/higgs_classification_nn)|
+|  2      |   <li> [Tutorial: Graph Neural Network](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/top_tagging_gnn)  <li> [Generative Models](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/generative_models)|
+|  3      |   <li> [Tutorial: Unfolding](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/unfolding) <li> [Tutorial: Introduction to JAX](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/jax_intro) |
+|  4      |  <li> [Tutorial: Athena ONNX](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/athena-ONNX)  <li> [Tutorial: Hardware Deployment with `hls4ml`](https://github.com/usatlas-ml-training/lbnl-2023/tree/main/hls4ml_tutorial)
+
+
+
+
+    
