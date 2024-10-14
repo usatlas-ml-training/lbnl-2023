@@ -7,7 +7,7 @@ We will use the official `hls4ml` tutorial repo
 ## Instructions
 
 ### JupyterHub access (for hls4ml tutorial)
-- Join hls4ml-tutorial GitHub Organization (check your email for invite) 
+- Join hls4ml-tutorial GitHub Organization (check your email for invite)
 - Set your membership to Public here: [https://github.com/orgs/hls4ml-tutorial/people](https://github.com/orgs/hls4ml-tutorial/people)
 
 -----
@@ -18,5 +18,5 @@ We will use the official `hls4ml` tutorial repo
 
 ------
 
-### Open and start running through “part1_getting_started” !   
+### Open and start running through “part1_getting_started” !
 If you’re new to Jupyter notebooks, select a cell and hit “shift + enter” to execute the code
