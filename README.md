@@ -1,6 +1,6 @@
 # US ATLAS Machine Learning Training 2023
 
-This repository contains the necesary codes and instructions for the training.   
+This repository contains the necesary codes and instructions for the training.
 
 Indico Link: https://indico.cern.ch/event/1264566/timetable/?view=standard
 
@@ -17,4 +17,4 @@ Indico Link: https://indico.cern.ch/event/1264566/timetable/?view=standard
 
 
 
-    
+
