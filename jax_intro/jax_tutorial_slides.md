@@ -232,7 +232,7 @@ $f \colon \mathbb{R}^n \to \mathbb{R}^m$, think of $f(x)$ as row vectors.
 `jax.vmap(f)`:
 
 $$\begin{pmatrix}
-x^{(1)}_1 & x^{(1)}_2 \dots & x^{(1)}_n \\\\ 
+x^{(1)}_1 & x^{(1)}_2 \dots & x^{(1)}_n \\\\
 \dots & & \\\\
 x^{(k)}_1 & x^{(k)}_2 \dots & x^{(k)}_n
 \end{pmatrix} \mapsto
@@ -258,12 +258,12 @@ $f \colon \mathbb{R}^n \to \mathbb{R}^m$.
 
 ### vmap
 
-$f \colon \mathbb{R}^n \to \mathbb{R}^m$, 
+$f \colon \mathbb{R}^n \to \mathbb{R}^m$,
 
 `jax.vmap(f, in_axes=1)`:
 $x$ is a column vector, $f(x)$ is a row vector.
 $$\begin{pmatrix}
-x^{(1)}_1 & x^{(2)}_1 \dots & x^{(k)}_1 \\\\ 
+x^{(1)}_1 & x^{(2)}_1 \dots & x^{(k)}_1 \\\\
 \dots & & \\\\
 x^{(1)}_n & x^{(2)}_n \dots & x^{(k)}_n
 \end{pmatrix} \mapsto
@@ -337,7 +337,7 @@ print(ys.shape)
 ---
 
 ## Differentiation: Details
- 
+
 ---
 
 ### Differentiation: Mathematics
@@ -377,8 +377,8 @@ cheb_2_prime(1.0)
  File "...", line 6, in cheb_2
     return np.cos(2 * jnp.arccos(x))
            ^^^^^^^^^^^^^^^^^^^^^^^^^
-jax.errors.TracerArrayConversionError: The numpy.ndarray 
-conversion method __array__() was called on traced array 
+jax.errors.TracerArrayConversionError: The numpy.ndarray
+conversion method __array__() was called on traced array
 with shape float32[].
 ```
 
@@ -387,13 +387,13 @@ with shape float32[].
 ### Differentiation: Details
 
 By default, `jax.grad` takes the derivative w.r.t. first argument.
-If $f \colon \mathbb{R}^n \to \mathbb{R}$ is implemented as 
+If $f \colon \mathbb{R}^n \to \mathbb{R}$ is implemented as
 * ```python
 def f(x):
     # x is an n-dimensional array
-```  
+```
 then `jax.grad` is exactly $\nabla$.
-* 
+*
 ```python
 def f(x_1, ..., x_n):
     # x_1, ..., x_n are reals
@@ -456,7 +456,7 @@ print(h_y(2, 3, 4))
 27.0
 
 print(h_x_and_h_z(2, 3, 4))
-(Array(4., dtype=float32, weak_type=True), 
+(Array(4., dtype=float32, weak_type=True),
  Array(256., dtype=float32, weak_type=True))
 ```
 
@@ -602,7 +602,7 @@ Traceback (most recent call last):
     if y == 1:
        ^^^^^^
 jax.errors.ConcretizationTypeError: Abstract tracer value encountered where concrete value is expected: traced array with shape bool[].
-The problem arose with the `bool` function. 
+The problem arose with the `bool` function.
 The error occurred while tracing the function foo at /home/narn/code/ml_constraints/jax_tutorial/jit_example_3.py:6 for jit. This concrete value was not available in Python because it depends on the value of the argument y.
 ```
 
@@ -759,7 +759,7 @@ Functions are *first-class citizens*:
 
 ### Functional programming: Pure functions and state
 
-* What if we need state? 
+* What if we need state?
 * Pass it as an argument.
 * Example: PRNG (pseudo-random number generators).
 
@@ -812,7 +812,7 @@ def get_random():
 
 ```python
 np.random.seed(0)
-print("individually:", 
+print("individually:",
         np.stack([np.random.uniform() for _ in range(3)]))
 
 np.random.seed(0)
@@ -933,9 +933,9 @@ all at once:  [ 0.18693541 -1.2806507  -1.5593133 ]
 
 ----
 
-> A pytree is a container of leaf elements and/or more pytrees. Containers include lists, tuples, and dicts. 
-> A leaf element is anything that’s not a pytree, e.g. an array. In other words, a pytree is just a possibly-nested standard or 
-> user-registered Python container. 
+> A pytree is a container of leaf elements and/or more pytrees. Containers include lists, tuples, and dicts.
+> A leaf element is anything that’s not a pytree, e.g. an array. In other words, a pytree is just a possibly-nested standard or
+> user-registered Python container.
 > If nested, note that the container types do not need to match. A single “leaf”, i.e. a non-container object, is also considered a pytree.
 
 ---
@@ -1192,7 +1192,7 @@ elapsed = time.time() - start
 ### IFT Statement
 
 * Let $f: \mathbb{R}^p \times \mathbb{R}^n \rightarrow \mathbb{R}^n$ and $a_0 \in \mathbb{R}^p$, $z_0 \in \mathbb{R}^n$ be such that:
-  
+
 1. $f(a_0, z_0) = 0$ and
 2. $f$ is continuously differentiable with non-singular Jacobian $\partial_1 f(a_0, z_0) \in \mathbb{R}^{n\times n}$
 
@@ -1258,7 +1258,7 @@ grad_lagr = jax.grad(lagrangian, has_aux=True)
 p = jnp.array([2.0, 3.0, 4.0, 1.0, 2.0, 3.0])
 lagr_gradient, (kinetic, potential) = grad_lagr(p, 1.0)
 print(lagr_gradient, (kinetic, potential))
-[ 0.    0.   -9.81  1.    2.    3.  ] 
+[ 0.    0.   -9.81  1.    2.    3.  ]
 (Array(7., dtype=float32), Array(39.24, dtype=float32))
 ```
 
@@ -1326,7 +1326,7 @@ llp = jax.value_and_grad(lagrangian, has_aux=True)
 
  We can change this behavior.
 
-* To suppress preallocation: 
+* To suppress preallocation:
     ```sh
     $ export XLA_PYTHON_CLIENT_PREALLOCATE=false
     $ python
@@ -1561,5 +1561,3 @@ elapsed_no_jit = 0.412574
 `static_argnums`.
 
 ---
-
-
